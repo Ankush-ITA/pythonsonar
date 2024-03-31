@@ -1,23 +1,21 @@
-import sys
-import os
- 
-path1 = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-complete_path = os.path.join(path1, "Microbots")
-sys.path.append(complete_path)
- 
-from license_check import check_license
-from final_excution import main_excution
- 
- 
-def main():
-    try:
-        if check_license():
-            main_excution()
-           
- 
-    except Exception as e:
-        error_message = str(e)
-        print(f"{error_message}")
- 
-if __name__ == "__main__":
-    main()
+def process_user(user):
+    if user.is_active():
+        # +1 (if)
+        if user.has_profile():
+            # +1 (if) +1 (nested)
+            # ... process active user with profile
+        else:
+            # +1 (else)
+            # ... process active user without profile
+    else:
+        # +1 (else)
+        if user.has_profile():
+            # +1 (if) +1 (nested)
+            # ... process inactive user with profile
+        else:
+            # +1 (else)
+            # ... process inactive user without profile
+
+# Example usage:
+some_user = User("Alice", active=True, has_profile=True)
+process_user(some_user)
